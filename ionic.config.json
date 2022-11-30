@@ -1,0 +1,7 @@
+{
+  "name": "market-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}
