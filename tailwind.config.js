@@ -1,12 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './index.html',
-    './src/App.vue',
-    './src/components/*.{vue,ts,html}'
-  ],
+  darkMode: "class",
+  content: ["./index.html", "./src/*.vue", "./src/components/*.{vue,ts,html}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        comfortaa: ["Comfortaa", "cursive"],
+        raleway: ["Raleway", "sans-serif"],
+      },
+    },
   },
   plugins: [],
-}
+};
