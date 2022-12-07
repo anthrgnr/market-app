@@ -4,6 +4,7 @@ const platform = Capacitor.getPlatform();
 const state = () => ({
   isIOS: platform === "ios",
   isWeb: platform === "web",
+  lang: 'EN'
 });
 
 export default {

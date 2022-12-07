@@ -1,7 +1,8 @@
-interface Product {
+export default interface Product {
   nameEN: string,
+  nameDE?: string,
+  nameRU?: string,
   id: string | number,
-  groupId: string | number
-}
-
-export default Product;
+  groupId: string | number,
+  inBasket: boolean
+};

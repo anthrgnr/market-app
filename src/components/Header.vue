@@ -8,10 +8,11 @@ const props = defineProps({
 </script>
 
 <template>
-  <div :class="['flex align-baseline justify-between', $store.state.settings.isIOS ? 'my-4' : 'mb-4']">
+  <div :class="['w-full flex items-center justify-between mb-4', $store.state.settings.isIOS ? 'mt-8' : undefined]">
     <p class="font-comfortaa text-4xl tracking-wide text-slate-700 dark:text-slate-100">
       Market.app
     </p>
-    <button @click="props.toggleDark()">#</button>
+    <font-awesome-icon role="button" icon="fa-regular fa-lightbulb" size="xl" class="text-slate-700 dark:text-slate-100"
+      @click="props.toggleDark()" />
   </div>
 </template>
