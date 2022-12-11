@@ -3,5 +3,6 @@ export default interface Category {
     nameDE?: string,
     nameRU?: string,
     id: string | number,
-    icon: string
+    icon: string,
+    hasChecked: boolean
 };

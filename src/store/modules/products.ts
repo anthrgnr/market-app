@@ -351,22 +351,33 @@ const state = () => ({
 
 const getters = {
   productsByGroupId: (state: State) => (groupId: string | number) => {
-      return state.all.filter((item: Product) => item.groupId === groupId)
+    return state.all.filter((item: Product) => item.groupId === groupId);
+  },
+  checkedProductsByGroupId: (state: State) => (groupId: string | number) => {
+    return state.all.filter((item: Product) => item.groupId === groupId && item.inBasket);
+  },
+  checkedCategories: (state: State) => {
+    return state.categories.filter((category: Category) => category.hasChecked);
   }
 };
 
-const actions = {};
-
 const mutations = {
   setInBasket: (state: State, payload: { id: string | number, inBasket: boolean }) => {
-    state.all.find((item: Product) => payload.id === item.id)!.inBasket = payload.inBasket
+    const item = state.all.find((item: Product) => payload.id === item.id);
+    const category = state.categories.find((category: Category) => category.id === item!.groupId);
+    item!.inBasket = payload.inBasket;
+    if (payload.inBasket) { category!.hasChecked = true; }
+    else {
+      const hasChecked = state.all.filter((item: Product) => item.groupId === category?.id)
+        .some((item: Product) => item.inBasket);
+      category!.hasChecked = hasChecked;
+    }
   }
 };
 
 export default {
   namespaced: true,
   state,
-  actions,
   getters,
   mutations
 };

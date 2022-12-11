@@ -5,6 +5,7 @@ import { useStore } from "vuex";
 
 import Header from "./components/Header.vue";
 import ProductList from "./components/ProductList.vue";
+import ShoppingList from "./components/ShoppingList.vue";
 import Switcher from "./components/Switcher.vue";
 import { getSwitcherTitle } from "./services/constants";
 
@@ -15,13 +16,14 @@ const store = useStore();
 const productCategories = computed(() => store.state.products.categories);
 const lang = computed(() => store.state.settings.lang);
 const productsByGroupId = computed(() => store.getters['products/productsByGroupId']);
+const checkedProductsByGroupId = computed(() => store.getters['products/checkedProductsByGroupId']);
+const checkedCategories = computed(() => store.getters['products/checkedCategories']);
 const setInBasket = (id: string | number, inBasket: boolean) => {
     store.commit('products/setInBasket', {
         id,
         inBasket
     })
-}
-
+};
 
 const isLeftTabActive = ref(true);
 const { leftTitle, rightTitle } = getSwitcherTitle(lang.value)
@@ -37,6 +39,11 @@ const { leftTitle, rightTitle } = getSwitcherTitle(lang.value)
             <ProductList v-show="isLeftTabActive" v-for="category in productCategories" :name="category[`name${lang}`]"
                 :items="productsByGroupId(category.id)" :key="category.id" :itemName="`name${lang}`"
                 :icon="category.icon" :lang="lang" :on-item-click="setInBasket" />
+        </div>
+        <div class="w-full flex flex-col gap-2">
+            <ShoppingList v-show="!isLeftTabActive" v-for="category in checkedCategories"
+                :name="category[`name${lang}`]" :items="checkedProductsByGroupId(category.id)" :key="category.id"
+                :itemName="`name${lang}`" :lang="lang" />
         </div>
     </div>
 </template>

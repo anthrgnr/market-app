@@ -15,7 +15,6 @@ const props = defineProps({
     },
     itemName: {
         type: String,
-        required: true,
         default: 'nameEN'
     },
     onItemClick: {
