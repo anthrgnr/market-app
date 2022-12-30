@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type Product from '@/types/Product';
+import { textColor } from '@/services/constants';
 
 const props = defineProps({
     name: {
@@ -16,19 +17,17 @@ const props = defineProps({
         default: 'nameEN'
     }
 });
-const textColor = "text-slate-700 dark:text-slate-100";
 </script>
 
 <template>
-    <div :class="['flex flex-col bg-slate-50 dark:bg-slate-700 rounded-lg p-4', textColor]">
+    <div :class="['flex flex-col rounded-lg', textColor]">
         <h3 class="font-raleway tracking-wide text-xl mb-2">
             {{ props.name }}
         </h3>
-        <div v-for="item in props.items" class="ml-2 flex items-center gap-2">
-            <input :id="item.nameEN" type="checkbox" class="w-3 h-3">
-            <label :for="item.nameEN" :class="['font-raleway', textColor]">
+        <div class="flex flex-col w-full gap-2">
+            <div v-for="item in props.items" class="bg-slate-50 dark:bg-slate-700 px-4 py-3 rounded-md shadow-sm">
                 {{ item[props.itemName as keyof Product] }}
-            </label>
+            </div>
         </div>
     </div>
 </template>

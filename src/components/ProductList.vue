@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type Product from "@/types/Product";
+import { textColor } from '@/services/constants';
 
 const props = defineProps({
     name: {
@@ -49,7 +50,6 @@ const showList = ref(false);
 const toggleList = () => {
     showList.value = !showList.value;
 };
-const textColor = "text-slate-700 dark:text-slate-100";
 </script>
 
 <template>
@@ -64,7 +64,7 @@ const textColor = "text-slate-700 dark:text-slate-100";
             <font-awesome-icon icon="fa-solid fa-angle-up" :class="textColor" :rotation="showList ? undefined : 180" />
         </div>
         <div role="listitem" v-show="showList"
-            class="flex flex-col rounded-md mt-1 bg-slate-50 dark:bg-slate-700 p-1 shadow">
+            class= "flex flex-col rounded-md mt-1 bg-slate-50 dark:bg-slate-700 p-1 shadow">
             <div v-for="item in props.items" :key="item.id"
                 class="flex items-center justify-between px-3 py-2 border-b dark:border-b-slate-600 last:border-none">
                 <p :class="['font-raleway', textColor]">{{ item[props.itemName as keyof Product] }}</p>
