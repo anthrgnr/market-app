@@ -34,7 +34,7 @@ const isLeftTabActive = ref(true);
 </script>
 
 <template>
-    <div class="flex items-center h-full flex-col p-4">
+    <div class="flex items-center h-full flex-col my-3 p-4">
         <Header :toggle-dark="toggleDark" :lang="lang" :set-lang="setLang"></Header>
         <Switcher :class="'self-start mb-4'" :left-text="(getSwitcherTitle(lang).leftTitle)"
             :right-text="(getSwitcherTitle(lang).rightTitle)" :on-left-click="() => isLeftTabActive = true"
