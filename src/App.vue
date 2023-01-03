@@ -2,8 +2,8 @@
 import { useDark, useToggle } from "@vueuse/core";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
-import EmptyContent from "./components/EmptyContent.vue";
 
+import EmptyContent from "./components/EmptyContent.vue";
 import Header from "./components/Header.vue";
 import ProductList from "./components/ProductList.vue";
 import ShoppingList from "./components/ShoppingList.vue";
@@ -20,6 +20,7 @@ const productsByGroupId = computed(() => store.getters['products/productsByGroup
 const checkedProductsByGroupId = computed(() => store.getters['products/checkedProductsByGroupId']);
 const checkedCategories = computed(() => store.getters['products/checkedCategories']);
 const hasChecked = computed(() => checkedCategories.value.length);
+
 const setInBasket = (id: string | number, inBasket: boolean) => {
     store.commit('products/setInBasket', {
         id,
