@@ -28,8 +28,7 @@ const props = defineProps({
         <div class="flex flex-col w-full gap-2">
             <div v-for="item in props.items" :key="item.id"
                 class="flex items-center gap-2 bg-slate-50 dark:bg-slate-700 px-4 py-3 rounded-md shadow-sm">
-                <Checkbox />
-                <p>{{ item[props.itemName as keyof Product] }}</p>
+                <Checkbox :caption="item[props.itemName as keyof Product]" />
             </div>
         </div>
     </div>

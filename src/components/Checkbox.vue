@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 
 const props = defineProps({
+    caption: String,
     onCheck: {
         type: Function,
         default: () => { }
@@ -17,13 +18,15 @@ const handleCheck = () => {
 </script>
 
 <template>
-    <div role="button" @click="handleCheck"
-        class="flex items-center justify-center h-4 w-4 border border-slate-700 dark:border-slate-100 rounded-sm">
-        <Transition>
-            <font-awesome-icon v-show="checked" class="text-slate-700 dark:text-slate-100 h-3"
-                icon="fa-solid fa-check" />
-        </Transition>
-    </div>
+    <button @click="handleCheck" class="flex gap-2 items-center">
+        <div class="flex items-center justify-center h-4 w-4 border border-slate-700 dark:border-slate-100 rounded-sm">
+            <Transition class="block">
+                <font-awesome-icon v-show="checked" class="text-slate-700 dark:text-slate-100 h-3"
+                    icon="fa-solid fa-check" />
+            </Transition>
+        </div>
+        <p :class="checked && 'line-through'">{{ props.caption }}</p>
+    </button>
 </template>
 
 <style>
